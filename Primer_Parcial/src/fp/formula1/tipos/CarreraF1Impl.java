@@ -1,7 +1,12 @@
-package fp.formula1.tipos;
+package src.fp.formula1.tipos;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import src.fp.formula1.excepciones.ExcepcionCarreraF1OperacionNoPermitida;
 
 /*EJERCICIO 2
 
@@ -38,7 +43,7 @@ decir, que están entre los n primeros de la parrilla y de la clasificación.
 
 */
 
-public class CarreraF1Impl implements CarreraF1{
+public class CarreraF1Impl implements CarreraF1 {
 
 	private String circuito;
 	private String pais;
@@ -46,19 +51,55 @@ public class CarreraF1Impl implements CarreraF1{
 	private List<PilotoF1> parrillaSalida;
 	private List<PilotoF1> clasificacion;
 
-	public CarreraF1Impl(String circuito, String pais, LocalDate fecha, List<PilotoF1> parrillaSalida, List<PilotoF1> clasificacion) {
+	/************* CONSTRUCTOR *************/
+	
+	public CarreraF1Impl(String circuito, String pais, LocalDate fecha, List<PilotoF1> parrillaSalida,
+			List<PilotoF1> clasificacion) {
 
 		this.circuito = circuito;
 		this.pais = pais;
 		this.fecha = fecha;
 		parrillaSalida = new ArrayList<PilotoF1>();
 		clasificacion = new ArrayList<PilotoF1>();
+
+	}
+	
+	/************* GETTERS & SETTERS *************/
+
+	public String getCircuito() {
+		
+		return circuito;
 		
 	}
 
-	private static final Integer [] PUNTUACIONES = {25,18,15,12,10,8,6,4,2,1};
+	public String getPais() {
+		
+		return pais;
+		
+	}
 
-	public Integer obtenerPuntuacionPiloto2(PilotoF1 p) {
+	public LocalDate getFecha() {
+		
+		return fecha;
+		
+	}
+
+	public List<PilotoF1> getParrillaSalida() {
+		
+		return new ArrayList<PilotoF1>(parrillaSalida);
+		
+	}
+
+	
+	public List<PilotoF1> getClasificacion() {
+		
+		return new ArrayList<PilotoF1>(clasificacion);
+		
+	}
+	
+	private static final Integer[] PUNTUACIONES = { 25, 18, 15, 12, 10, 8, 6, 4, 2, 1 };
+
+	public Integer obtenerPuntuacionPiloto(PilotoF1 p) {
 
 		Integer result = 0;
 		Integer pos = this.clasificacion.indexOf(p);
@@ -69,7 +110,7 @@ public class CarreraF1Impl implements CarreraF1{
 
 		}
 
-		if (pos< PUNTUACIONES.length) {
+		if (pos < PUNTUACIONES.length) {
 
 			result = PUNTUACIONES[pos];
 
@@ -114,9 +155,9 @@ public class CarreraF1Impl implements CarreraF1{
 
 		List<PilotoF1> result = new ArrayList<PilotoF1>();
 
-		if (n>lp.size()){
+		if (n > lp.size()) {
 
-			n=lp.size();
+			n = lp.size();
 
 		}
 
@@ -137,7 +178,9 @@ public class CarreraF1Impl implements CarreraF1{
 		return result;
 
 	}
-
+	
+	/*************EQUALS HASHCODE COMPARETO *************/
+	
 	public boolean equals(Object o) {
 
 		boolean result = false;
@@ -155,7 +198,7 @@ public class CarreraF1Impl implements CarreraF1{
 
 	public int hashCode() {
 
-		return this.getFecha().hashCode()*31;
+		return this.getFecha().hashCode() * 31;
 
 	}
 
@@ -165,6 +208,8 @@ public class CarreraF1Impl implements CarreraF1{
 
 	}
 
+	
+	
 
-
+	
 }

@@ -1,4 +1,4 @@
-package fp.formula1.tipos;
+package src.fp.formula1.tipos;
 
 public class PilotoF1Impl implements PilotoF1{
 
@@ -12,6 +12,24 @@ public class PilotoF1Impl implements PilotoF1{
 		this.escuderia = escuderia;
 		this.pais = pais;
 
+	}
+
+	public String getNombre() {
+		
+		return nombre;
+		
+	}
+
+	public String getEscuderia() {
+		
+		return escuderia;
+		
+	}
+
+	public String getPais() {
+		
+		return pais;
+		
 	}
 
 }

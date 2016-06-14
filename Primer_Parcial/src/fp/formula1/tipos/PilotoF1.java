@@ -1,4 +1,4 @@
-package fp.formula1.tipos;
+package src.fp.formula1.tipos;
 
 public interface PilotoF1 {
 // Propiedades
