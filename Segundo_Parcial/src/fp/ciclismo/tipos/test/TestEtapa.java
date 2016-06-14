@@ -30,6 +30,9 @@ public class TestEtapa  {
 		añadirCiclista(cli, 4000);
 		añadirCiclista(cli2, 6000);
 		añadirCiclista(cli3, 8000);
+		añadirCiclista(cli2, 1000);
+		añadirCiclista(cli2, -6000);
+		
 		
 		eliminarCiclista(cli2);
 		eliminarCiclista(cli4);
