@@ -114,18 +114,15 @@ public class PilotoF1PuntuadoImpl extends PilotoF1Impl implements PilotoF1Puntua
 	}
 
 	public List<String> getCircuitos() {
-		
-		return  new ArrayList<String>(circuitos);
-		
+
+		return new ArrayList<String>(circuitos);
+
 	}
 
 	public List<Integer> getPuntos() {
-	
-		return  new ArrayList<Integer>(puntos);
-		
+
+		return new ArrayList<Integer>(puntos);
+
 	}
-
-	
-
 
 }

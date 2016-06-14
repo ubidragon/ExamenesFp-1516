@@ -30,7 +30,7 @@ piloto del país dado que ha ganado n o más carreras, y false en caso contrario
 
 */
 
-public class MundialF1Impl implements MundialF1{
+public class MundialF1Impl implements MundialF1 {
 
 	private Integer anyo;
 	private SortedSet<CarreraF1> calendario;
@@ -41,7 +41,7 @@ public class MundialF1Impl implements MundialF1{
 		this.calendario = new TreeSet<CarreraF1>();
 		this.pilotos = new HashSet<PilotoF1Puntuado>();
 
-	}	
+	}
 
 	public List<CarreraF1> posterioresA(CarreraF1 c) {
 		List<CarreraF1> result = new ArrayList<CarreraF1>(this.calendario.tailSet(c));
@@ -65,6 +65,7 @@ public class MundialF1Impl implements MundialF1{
 		}
 		return result;
 	}
+
 	private Boolean carreraGanada(CarreraF1 c, PilotoF1 p) {
 		return c.getClasificacion().indexOf(p) == 0;
 	}
@@ -78,17 +79,17 @@ public class MundialF1Impl implements MundialF1{
 				max = carrerasGanadas(p);
 			}
 		}
-		if (result == null){
+		if (result == null) {
 			throw new NoSuchElementException();
 		}
 		return result.getNombre();
 	}
 
-	public PilotoF1 ganaEnCasa(){
+	public PilotoF1 ganaEnCasa() {
 		PilotoF1 result = null;
-		for(CarreraF1 c: calendario){
-			if (c.getPais().equals(pilotoGanador(c).getPais())){
-				result=pilotoGanador(c);
+		for (CarreraF1 c : calendario) {
+			if (c.getPais().equals(pilotoGanador(c).getPais())) {
+				result = pilotoGanador(c);
 				break;
 			}
 		}
@@ -96,9 +97,10 @@ public class MundialF1Impl implements MundialF1{
 			throw new NoSuchElementException();
 		return result;
 	}
-	private PilotoF1 pilotoGanador(CarreraF1 c){
+
+	private PilotoF1 pilotoGanador(CarreraF1 c) {
 		return c.getClasificacion().get(0);
-	} 
+	}
 
 	public Boolean existeGanador(String pais, Integer nCarreras) {
 		Boolean result = false;
@@ -114,19 +116,19 @@ public class MundialF1Impl implements MundialF1{
 	public Integer getA�o() {
 
 		return anyo;
-		
+
 	}
 
 	public SortedSet<CarreraF1> getCalendario() {
 
 		return new TreeSet<CarreraF1>();
-		
+
 	}
 
 	public Set<PilotoF1Puntuado> getPilotos() {
-		
+
 		return new HashSet<PilotoF1Puntuado>();
-		
+
 	}
 
 }
