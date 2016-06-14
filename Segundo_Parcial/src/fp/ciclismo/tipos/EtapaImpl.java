@@ -101,8 +101,12 @@ public class EtapaImpl implements Etapa {
 	      if (!ciclistaTiempo.keySet().contains(c)) {
 	        
 	        ciclistaTiempo.put(c, tiempo);
-	      }else{
-	        ciclistaTiempo.replace(c, tiempo);
+//	        no es estrictamente necesario ya que:
+//	        el replace te lo cambia directamente, pero el put, 
+//	        te elimina el viejo  y te pone el nuevo al final si 
+//	        ya existe
+//	      }else{
+//	        ciclistaTiempo.replace(c, tiempo);
 	      }
 	    
 	        
