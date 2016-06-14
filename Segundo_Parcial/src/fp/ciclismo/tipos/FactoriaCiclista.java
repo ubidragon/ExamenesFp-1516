@@ -1,7 +1,13 @@
 package src.fp.ciclismo.tipos;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class FactoriaCiclista {
 
@@ -19,7 +25,7 @@ public class FactoriaCiclista {
 	private static Map<String, List<Ciclista>> creaCiclista = new HashMap<String, List<Ciclista>>();
 
 	public static void actualizaPobsCiclista(List<Ciclista> c) {
-		creaCiclista.put(c.getPais(), c);
+		creaCiclista.put(((Ciclista)c).getPais(), c);
 	}
 
 	/*********** CONSTRUCTOR APARTIR DE STRING ***********/
@@ -29,7 +35,7 @@ public class FactoriaCiclista {
 		Ciclista res = new CiclistaImpl(s);
 
 		// Añade el ciclista al Set por eso se actualiza
-		actualizaPobsCiclista(res);
+		actualizaPobsCiclista((List<Ciclista>) res);
 
 		return res;
 
@@ -39,7 +45,7 @@ public class FactoriaCiclista {
 
 	public static List<Ciclista> createCiclistas(String nombreFichero) {
 
-		List<Ciclistas> res = leeFichero(nombreFichero, s ->createCiclista(s));
+		List<Ciclista> res = leeFichero(nombreFichero, s ->createCiclista(s));
 
 		return res;
 
