@@ -1,5 +1,6 @@
 package src.fp.ciclismo.tipos;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 public interface Etapa extends Comparable<Etapa>{
@@ -13,7 +14,7 @@ public interface Etapa extends Comparable<Etapa>{
 	Integer getTiempoCiclista(Ciclista c);				//Derivada
 	Set<Ciclista> getCiclistasTiempo(Integer tiempo);	//Derivada
 	//Operaciones
-	void aÃ±adirCiclista(Ciclista c, Integer tiempo);
+	void añadirCiclista(Ciclista c, Integer tiempo);
 	void bonificarCiclista(Ciclista c, Integer tiempo);
 	void eliminarCiclista(Ciclista c);
 

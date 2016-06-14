@@ -1,5 +1,6 @@
-package src.fp.ciclismo.tipos
+package src.fp.ciclismo.tipos;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 public class EtapaImpl implements Etapa{
@@ -36,23 +37,27 @@ public class EtapaImpl implements Etapa{
 	}
 
 	public Set<Ciclista> getCiclistas(){
+		return null;
 
 
 	}						
 	public Ciclista getGanador(){
+		return null;
 
 
 	}								
 	public Integer getTiempoCiclista(Ciclista c){
+		return null;
 
 
 	}				
 	public Set<Ciclista> getCiclistasTiempo(Integer tiempo){
+		return null;
 
 
 	}	
 	
-	public void aÃ±adirCiclista(Ciclista c, Integer tiempo){
+	public void añadirCiclista(Ciclista c, Integer tiempo){
 
 
 	}
