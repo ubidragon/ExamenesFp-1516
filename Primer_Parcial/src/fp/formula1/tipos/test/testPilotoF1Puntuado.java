@@ -1,6 +1,7 @@
-package fp.formula1.tipos.test;
+package src.fp.formula1.tipos.test;
 
-import java.util.List;
+import src.fp.formula1.tipos.PilotoF1Puntuado;
+import src.fp.formula1.tipos.PilotoF1PuntuadoImpl;
 
 
 public class testPilotoF1Puntuado{

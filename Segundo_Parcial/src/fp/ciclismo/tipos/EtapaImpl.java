@@ -1,4 +1,4 @@
-package fp.ciclismo.tipos
+package src.fp.ciclismo.tipos
 
 import java.util.Set;
 

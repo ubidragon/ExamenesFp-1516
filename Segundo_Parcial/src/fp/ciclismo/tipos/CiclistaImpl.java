@@ -1,4 +1,10 @@
-package fp.ciclismo.tipos
+package src.fp.ciclismo.tipos;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
+import src.fp.ciclismo.excepciones.ExcepcionCiclistaNoValido;
 
 public class CiclistaImpl implements Ciclista{
 
@@ -9,6 +15,8 @@ public class CiclistaImpl implements Ciclista{
 	/*********** CONSTRUCTOR ***********/
 	public CiclistaImpl(String nombre, LocalDate fechaNacimiento, String pais) {
 
+		checkEdad(fechaNacimiento);
+		
 		this.nombre = nombre;
 		this.fechaNacimiento = fechaNacimiento;
 		this.pais = pais;
@@ -23,14 +31,15 @@ public class CiclistaImpl implements Ciclista{
 
 		String[] trozos = s.split("#");
 
-		if (campos.length != 3) {
+		if (trozos.length != 3) {
 			throw new IllegalArgumentException("El formato de la cadena de entrada no es correcto.");
 		}
 
 		String nombre = trozos[0].trim();
-		LocalDate fechaNacimiento = new LocalDate.parse(trozos[1].trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		LocalDate fechaNacimiento = LocalDate.parse(trozos[1].trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		String pais = trozos[2].trim();
 
+		checkEdad(fechaNacimiento);
 
 		this.nombre = nombre;
 		this.fechaNacimiento = fechaNacimiento;
