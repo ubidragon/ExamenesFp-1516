@@ -1,13 +1,11 @@
 package src.fp.ciclismo.tipos;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import src.fp.ciclismo.excepciones.ExcepcionBonificacionCiclistaNoValida;
 import src.fp.ciclismo.excepciones.ExcepcionTiempoCiclistaNoValido;
 
 public class EtapaImpl implements Etapa {
@@ -57,7 +55,14 @@ public class EtapaImpl implements Etapa {
 	}
 
 	public Integer getTiempoCiclista(Ciclista c) {
-		return null;
+		
+		Integer tiempo = null;
+		
+		if(ciclistaTiempo.containsKey(c)){
+			tiempo = ciclistaTiempo.get(c).intValue();
+		}
+		
+		return tiempo;
 
 	}
 
@@ -104,11 +109,23 @@ public class EtapaImpl implements Etapa {
 	  }
 
 	public void bonificarCiclista(Ciclista c, Integer tiempo) {
-
+		
+		if(ciclistaTiempo.containsKey(c)){
+		Integer t =ciclistaTiempo.get(c).intValue();
+		Integer op= t-tiempo;
+		if(op < 0){
+			throw new ExcepcionBonificacionCiclistaNoValida("Ciclista inexistente");
+			
+		}
+		
+		ciclistaTiempo.replace(c, op);
+		}
+				
 	}
 
 	public void eliminarCiclista(Ciclista c) {
 
+		ciclistaTiempo.remove(c);
 		
 		
 	}
