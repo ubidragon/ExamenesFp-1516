@@ -1,9 +1,13 @@
 package src.fp.ciclismo.tipos;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
+
 
 import src.fp.ciclismo.excepciones.ExcepcionBonificacionCiclistaNoValida;
 import src.fp.ciclismo.excepciones.ExcepcionTiempoCiclistaNoValido;
@@ -50,8 +54,15 @@ public class EtapaImpl implements Etapa {
 	}
 
 	public Ciclista getGanador() {
-		return null;
+		Ciclista ganador = null;
+		
+		Comparator<Etapa> cmp = 
+		
+//		return getCiclistas().stream().collect(Collectors.minBy(cmp));
 
+			return	getCiclistas().stream()
+					.min(Comparator.comparing(x -> x.getTiempoCiclista()))
+					.get().;
 	}
 
 	public Integer getTiempoCiclista(Ciclista c) {
