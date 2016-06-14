@@ -1,15 +1,23 @@
 package src.fp.ciclismo.tipos;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
-public class EtapaImpl implements Etapa{
+import src.fp.ciclismo.excepciones.ExcepcionTiempoCiclistaNoValido;
 
-	private LocalDate fecha ;
+public class EtapaImpl implements Etapa {
+	
+	private LocalDate fecha;
 	private String salida;
 	private String llegada;
+	private static SortedMap<Ciclista, Integer> ciclistaTiempo = new TreeMap<Ciclista, Integer>();
 
-	public EtapaImpl(LocalDate fecha, String salida, String llegada){
+	public EtapaImpl(LocalDate fecha, String salida, String llegada) {
 
 		this.fecha = fecha;
 		this.salida = salida;
@@ -17,61 +25,98 @@ public class EtapaImpl implements Etapa{
 
 	}
 
-	/*********** GETTERS & SETTERS ***********/	
-	public LocalDate getFecha(){
+	/*********** GETTERS & SETTERS ***********/
+	public LocalDate getFecha() {
 
 		return fecha;
 
 	}
 
-	public String getSalida(){
+	public String getSalida() {
 
 		return salida;
 
 	}
 
-	public String getLlegada(){
+	public String getLlegada() {
 
 		return llegada;
 
 	}
 
-	public Set<Ciclista> getCiclistas(){
+	public Set<Ciclista> getCiclistas() {
+		 //se usa el keySet, si no la lista es vacia, tu aññades los 
+		//ciclistas al map, y con esto los sacas todos, por eso te salia vacio
+	    return ciclistaTiempo.keySet();
+
+	}
+
+	public Ciclista getGanador() {
 		return null;
 
+	}
 
-	}						
-	public Ciclista getGanador(){
+	public Integer getTiempoCiclista(Ciclista c) {
 		return null;
 
+	}
 
-	}								
-	public Integer getTiempoCiclista(Ciclista c){
+	public Set<Ciclista> getCiclistasTiempo(Integer tiempo) {
 		return null;
 
+	}
 
-	}				
-	public Set<Ciclista> getCiclistasTiempo(Integer tiempo){
-		return null;
-
-
-	}	
+//	public void añadirCiclista(Ciclista c, Integer tiempo) {
+//		
+//		
+//		if(tiempo < 0){
+//			throw new ExcepcionTiempoCiclistaNoValido("El tiempo es inferior a 0");
+//		}
+//		
+//		for (Ciclista cli : getCiclistas()) {
+//			
+//			if (getCiclistas().contains(cli)) {
+//				ciclistaTiempo.replace(c, tiempo);
+//			}else{
+//				ciclistaTiempo.put(cli, tiempo);
+//			}
+//
+//		}
+//		
+//				
+//	}
 	
-	public void añadirCiclista(Ciclista c, Integer tiempo){
+	public void añadirCiclista(Ciclista c, Integer tiempo) {
+	    
+	    
+	    if(tiempo < 0){
+	      throw new ExcepcionTiempoCiclistaNoValido("El tiempo es inferior a 0");
+	    }
 
+	      if (!ciclistaTiempo.keySet().contains(c)) {
+	        
+	        ciclistaTiempo.put(c, tiempo);
+	      }else{
+	        ciclistaTiempo.replace(c, tiempo);
+	      }
+	    
+	        
+	  }
+
+	public void bonificarCiclista(Ciclista c, Integer tiempo) {
 
 	}
-	public void bonificarCiclista(Ciclista c, Integer tiempo){
 
+	public void eliminarCiclista(Ciclista c) {
 
-	}
-	public void eliminarCiclista(Ciclista c){
-
-
+		
+		
 	}
 
+	 
+	
 
-	/*******EQUALS HASHCODE COMPARETO**********/
+	/******* EQUALS HASHCODE COMPARETO **********/
 
 	public boolean equals(Object o) {
 
@@ -79,7 +124,7 @@ public class EtapaImpl implements Etapa{
 
 		if (o instanceof Etapa) {
 
-			Etapa et =  (Etapa) o;
+			Etapa et = (Etapa) o;
 			result = this.getFecha().equals(et.getFecha());
 
 		}
@@ -90,21 +135,20 @@ public class EtapaImpl implements Etapa{
 
 	public int hashCode() {
 
-		return this.getFecha().hashCode()*31;
+		return this.getFecha().hashCode() * 31;
 
 	}
 
-	public int compareTo (Etapa et) {
+	public int compareTo(Etapa et) {
 
 		return this.getFecha().compareTo(et.getFecha());
 
 	}
 
-	public String toString(){
+	public String toString() {
 
-		return "Fecha de la Etapa: "+ getFecha();
+		return "Fecha de la Etapa: " + getFecha();
 
 	}
-
 
 }

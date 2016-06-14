@@ -3,6 +3,7 @@ package src.fp.ciclismo.tipos;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class FactoriaCiclista {
-
 
 	public static <T> List<T> leeFichero(String nombreFichero, Function<String, T> funcion_deString_aT) {
 		List<T> res = null;
@@ -24,9 +24,16 @@ public class FactoriaCiclista {
 
 	private static Map<String, List<Ciclista>> creaCiclista = new HashMap<String, List<Ciclista>>();
 
-	public static void actualizaPobsCiclista(List<Ciclista> c) {
-		creaCiclista.put(((Ciclista)c).getPais(), c);
-	}
+	public static void actualizaPobsCiclista(Ciclista c) {
+		  
+		  if(creaCiclista.containsKey(c.getPais())) {
+		    creaCiclista.get(c.getPais()).add(c);
+		  } else {
+		List<Ciclista> list = new ArrayList<Ciclista>();
+		list.add(c);
+		    creaCiclista.put(c.getPais(), list);
+		  }
+		  }
 
 	/*********** CONSTRUCTOR APARTIR DE STRING ***********/
 	public static Ciclista createCiclista(String s) {
@@ -35,7 +42,7 @@ public class FactoriaCiclista {
 		Ciclista res = new CiclistaImpl(s);
 
 		// Añade el ciclista al Set por eso se actualiza
-		actualizaPobsCiclista((List<Ciclista>) res);
+		actualizaPobsCiclista(res);
 
 		return res;
 
@@ -45,14 +52,14 @@ public class FactoriaCiclista {
 
 	public static List<Ciclista> createCiclistas(String nombreFichero) {
 
-		List<Ciclista> res = leeFichero(nombreFichero, s ->createCiclista(s));
+		List<Ciclista> res = leeFichero(nombreFichero, s -> createCiclista(s));
 
 		return res;
 
 	}
 
-	public static List<Ciclista> getCiclistasPorPais(String pais){
-      return creaCiclista.get(pais);
-    }
+	public static List<Ciclista> getCiclistasPorPais(String pais) {
+		return creaCiclista.get(pais);
+	}
 
 }

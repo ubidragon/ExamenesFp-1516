@@ -6,26 +6,26 @@ import java.time.temporal.ChronoUnit;
 
 import src.fp.ciclismo.excepciones.ExcepcionCiclistaNoValido;
 
-public class CiclistaImpl implements Ciclista{
+public class CiclistaImpl implements Ciclista {
 
-	private String nombre ;
-	private LocalDate fechaNacimiento ;
+	private String nombre;
+	private LocalDate fechaNacimiento;
 	private String pais;
 
 	/*********** CONSTRUCTOR ***********/
 	public CiclistaImpl(String nombre, LocalDate fechaNacimiento, String pais) {
 
-		checkEdad(fechaNacimiento);
 		
 		this.nombre = nombre;
 		this.fechaNacimiento = fechaNacimiento;
 		this.pais = pais;
+checkEdad(fechaNacimiento);
 
 	}
 
 	/*********** CONSTRUCTOR APARTIR DE STRING ***********/
 
-	public CiclistaImpl(String s){
+	public CiclistaImpl(String s) {
 		// Ejemplo de formato de la cadena de entrada:
 		// Alberto Contador # España # 06/12/1982
 
@@ -45,42 +45,45 @@ public class CiclistaImpl implements Ciclista{
 		this.fechaNacimiento = fechaNacimiento;
 		this.pais = pais;
 
-
 	}
-
 
 	/*********** EXCEPCIONES ***********/
 
-	private void checkEdad(LocalDate fechaNacimiento){
+	private void checkEdad(LocalDate fechaNacimiento) {
 
-		Integer edad = (int) getFechaNacimiento().until(LocalDate.now(), ChronoUnit.YEARS);
-
-		if(edad < 18){
+		
+		if (getEdad() < 18) {
 			throw new ExcepcionCiclistaNoValido("El ciclista tiene una edad inferior a 18");
 		}
 
 	}
+	
+	private Integer getEdad() {
+		// return Period.between(getFechaNacimiento(),
+		// LocalDate.now()).getYears();
+		return (int) getFechaNacimiento().until(LocalDate.now(), ChronoUnit.YEARS);
+	}
 
-	/*********** GETTERS & SETTERS ***********/	
+	/*********** GETTERS & SETTERS ***********/
 
-	public String getNombre(){
+	public String getNombre() {
 
 		return nombre;
 
 	}
 
-	public LocalDate getFechaNacimiento(){
+	public LocalDate getFechaNacimiento() {
 
 		return fechaNacimiento;
 	}
 
-	public String getPais(){
+	public String getPais() {
 
 		return pais;
 
 	}
 
-	/*******EQUALS HASHCODE COMPARETO**********/
+	/******* EQUALS HASHCODE COMPARETO **********/
 
 	public boolean equals(Object o) {
 
@@ -88,7 +91,7 @@ public class CiclistaImpl implements Ciclista{
 
 		if (o instanceof Ciclista) {
 
-		 Ciclista c =  (Ciclista) o;
+			Ciclista c = (Ciclista) o;
 			result = this.getNombre().equals(c.getNombre());
 
 		}
@@ -99,17 +102,21 @@ public class CiclistaImpl implements Ciclista{
 
 	public int hashCode() {
 
-		return this.getNombre().hashCode()*31;
+		return this.getNombre().hashCode() * 31;
 
 	}
 
-	public int compareTo (Ciclista c) {
+	public int compareTo(Ciclista c) {
 
 		return this.getNombre().compareTo(c.getNombre());
 
 	}
 
 
-
+	public String toString() {
+		return getNombre();
+	}
+	
+	
 
 }
